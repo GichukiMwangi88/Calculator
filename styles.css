@@ -1,0 +1,57 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6em;
+}
+
+
+
+.container {
+    border: 1px solid black;
+    border-radius: 25px;
+    display: inline-block;
+    font-family: 'Concert One', cursive;
+    gap: 5px;
+    background-color: #E7EFDC;
+    text-align: center;
+    margin: auto;
+    padding: 1.25em;
+}
+
+.header {
+    text-align: center;
+}
+
+.display {
+    border: 1px solid blue;
+    width: 50%;
+    margin-left: 125px;
+    height: 40px;
+    background-color: #CEDEED;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 30px;
+
+
+}
+
+.calc-container {
+
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-auto-rows: 80px;
+    grid-gap: 10px;
+    padding: 25px;
+    margin-top: 0;
+
+}
+
+.gridItem {
+    border: 1px solid black;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 25px;
+    background-color: #339CFF;
+}
