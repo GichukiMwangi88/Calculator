@@ -127,13 +127,17 @@ clear.addEventListener("click", function () {
 //Calculate the result
 
 equal.addEventListener("click", function () {
-  result = operation();
-  round();
-  if (previousDisplay.textContent !== "") {
-    //displays the current result of operation
-    previousDisplay.textContent = result;
+  //Validate that the previous and current display aren't
+  //empty to allow operation
+  if (previousDisplay.textContent !== "" && currentDisplay.textContent !== "") {
+    result = operation();
+    round();
+    if (previousDisplay.textContent !== "") {
+      //displays the current result of operation
+      previousDisplay.textContent = result;
+    }
+    currentDisplay.textContent = result; //displays the current result on the current display
   }
-  currentDisplay.textContent = result; //displays the current result on the current display
 });
 
 //Function to round numbers to 2 decimal places
