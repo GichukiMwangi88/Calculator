@@ -55,6 +55,8 @@ let equal = document.querySelector("#equals");
 let numbers = document.querySelectorAll("#number");
 let operators = document.querySelectorAll("#operator");
 
+let decimal = document.querySelector("#decimal");
+
 //Going to have 2 screens that will display previous
 // and current operands.
 
@@ -68,6 +70,7 @@ let currentDisplay = document.querySelector(".current");
 numbers.forEach(function (number) {
   number.addEventListener("click", function (e) {
     handleNumber(e.target.textContent); //display the content of the HTML element
+    handleDecimal();
     currentDisplay.textContent = currentOperand;
   });
 });
@@ -78,6 +81,17 @@ function handleNumber(num) {
   //limit the length of the numbers the user can input
   if (currentOperand.length <= 4) {
     currentOperand += num;
+  }
+}
+
+//Function to handle the decimal input
+//limit the decimal typed to one
+
+function handleDecimal() {
+  if (decimal.length > 1) {
+    return;
+  } else {
+    return decimal;
   }
 }
 
@@ -115,8 +129,11 @@ clear.addEventListener("click", function () {
 equal.addEventListener("click", function () {
   result = operation();
   round();
+  if (previousDisplay.textContent !== "") {
+    //displays the current result of operation
+    previousDisplay.textContent = result;
+  }
   currentDisplay.textContent = result; //displays the current result on the current display
-  result = previousOperand;
 });
 
 //Function to round numbers to 2 decimal places
