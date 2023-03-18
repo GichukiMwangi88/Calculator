@@ -1,82 +1,119 @@
 //Functions that do basic math
 
 function add(a, b) {
-    return a + b;
-};
+  return a + b;
+}
 
 function subtract(a, b) {
-    return a - b;
-};
+  return a - b;
+}
 
 function multiply(a, b) {
-    return a * b;
+  return a * b;
 }
 
 function divide(a, b) {
+  if ((b = 0)) {
+    ("Not possible");
+  } else {
     return a / b;
+  }
 }
 
-//Operator function that takes an operator
-//and 2 numbers and calls one of the above
-//functions on the numbers
+//Create a new function that takes 2 numbers
+//and an operator and calculates the result
+//when called
 
-const operate = function calculate(a, b, oper) {
-    //initialize result variable
-
-    let result = 0;
-
-    switch (oper) {
-        case add:
-            result = a + b;
-            break;
-        case subtract:
-            result = a - b;
-            break;
-        case multiply:
-            result = a * b;
-            break;
-        case divide:
-            if (b === 0) {
-                return "Can't divide by zero"
-            } else {
-                result = a / b;
-            }
-            break;
-    }
-
-    return result;
-
+function operation() {
+  //convert the operands from strings to numbers to enable math operations
+  previousOperand = Number(previousOperand);
+  currentOperand = Number(currentOperand);
+  switch (operator) {
+    case "+":
+      return add(previousOperand, currentOperand);
+    case "-":
+      return subtract(previousOperand, currentOperand);
+    case "*":
+      return multiply(previousOperand, currentOperand);
+    case "/":
+      return divide(previousOperand, currentOperand);
+  }
 }
 
-//Event listeners for the button elements of the calculator
-//Select all the elements and store them in a variable
-//to allow DOM manipulation
+//Global variables
 
-const buttons = document.querySelectorAll("#number");
+let operator = "";
+let previousOperand = "";
+let currentOperand = "";
+let result = "";
 
-const displayText = document.querySelector(".display");
+//DOM Elements and their variables
 
-const operators = document.querySelectorAll("#operator");
+let clear = document.querySelector("#clear");
+let equal = document.querySelector("#equals");
 
-//Function to display clicked numbers on the calculator display
+let numbers = document.querySelectorAll("#number");
+let operators = document.querySelectorAll("#operator");
 
-let selectionArray = [];
+//Going to have 2 screens that will display previous
+// and current operands.
 
-buttons.forEach(function (button) {
-    button.addEventListener('click', function (event) {
-        let selection = event.target.textContent;
-        displayText.textContent += selection;
-    })
+let previousDisplay = document.querySelector(".previous");
+let currentDisplay = document.querySelector(".current");
+
+//Event listeners for the HTML elements
+
+//Number buttons
+
+numbers.forEach(function (number) {
+  number.addEventListener("click", function (e) {
+    handleNumber(e.target.textContent); //display the content of the HTML element
+    currentDisplay.textContent = currentOperand;
+  });
 });
 
-console.log(selectionArray);
+//Function to handle the numbers clicked
 
-//Function to display operators on the calculator display
+function handleNumber(num) {
+  //limit the length of the numbers the user can input
+  if (currentOperand.length <= 4) {
+    currentOperand += num;
+  }
+}
 
-operators.forEach(function (operator) {
-    operator.addEventListener('click', function (event) {
-        let operatorSelection = event.target.textContent;
-        displayText.textContent += operatorSelection;
-    })
+//Handle the operators when clicked
+
+operators.forEach(function (op) {
+  op.addEventListener("click", function (e) {
+    handleOperator(e.target.textContent);
+    previousDisplay.textContent = previousOperand + " " + operator;
+    currentDisplay.textContent = currentOperand;
+  });
 });
 
+//Function for operators
+
+function handleOperator(op) {
+  operator = op;
+
+  previousOperand = currentOperand;
+  currentOperand = "";
+}
+
+//Reset the display
+
+clear.addEventListener("click", function () {
+  previousOperand = "";
+  currentOperand = "";
+  operator = "";
+  previousDisplay.textContent = "";
+  currentDisplay.textContent = "";
+});
+
+//Calculate the result
+
+equal.addEventListener("click", function () {
+  result = operation();
+  currentDisplay.textContent = result; //displays the current result on the current display
+  result = previousOperand;
+});

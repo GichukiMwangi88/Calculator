@@ -23,24 +23,54 @@ body {
     text-align: center;
 }
 
-.display {
+.displayTop {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+#clear {
+    line-height: 20px;
+}
+
+.display { 
     border: 1px solid blue;
-    width: 50%;
-    margin-left: 125px;
-    height: 40px;
+    width: 60%;
+    margin-left: 30px;
+    height: 60px;
     background-color: #CEDEED;
-    border-radius: 25px;
-    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+   
+  
+
+}
+
+.previous {
+    font-size: 20px;
+}
+
+.current {
     font-size: 30px;
+}
 
 
+
+.gridItem:hover {
+    background-color: beige;
 }
 
 .calc-container {
 
     display: grid;
-    grid-template-columns: repeat(4, 100px);
-    grid-auto-rows: 80px;
+    grid-template-columns: repeat(4, 80px);
+    grid-auto-rows: 70px;
     grid-gap: 10px;
     padding: 25px;
     margin-top: 0;
