@@ -13,8 +13,8 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-  if ((b = 0)) {
-    ("Not possible");
+  if (b === 0) {
+    return "LOL";
   } else {
     return a / b;
   }
@@ -114,6 +114,13 @@ clear.addEventListener("click", function () {
 
 equal.addEventListener("click", function () {
   result = operation();
+  round();
   currentDisplay.textContent = result; //displays the current result on the current display
   result = previousOperand;
 });
+
+//Function to round numbers to 2 decimal places
+
+function round() {
+  result = Math.round(result * 100) / 100;
+}
