@@ -114,6 +114,20 @@ function handleOperator(op) {
   currentOperand = "";
 }
 
+//Handle decimal points when clicked
+
+decimal.addEventListener("click", function () {
+  addDecimal();
+});
+
+//Function to handle decimal points
+
+function addDecimal() {
+  if (!currentOperand.includes(".")) {
+    currentOperand += ".";
+  }
+}
+
 //Reset the display
 
 clear.addEventListener("click", function () {
@@ -141,7 +155,6 @@ equal.addEventListener("click", function () {
 });
 
 //Function to round numbers to 2 decimal places
-
 function round() {
   result = Math.round(result * 100) / 100;
 }
