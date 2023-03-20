@@ -1,4 +1,9 @@
-//Functions that do basic math
+//Variable to store error message
+//when divisor is zero
+
+const errorMessage = "LOL!!Try again!!";
+
+//Functions that do basic math operations
 
 function add(a, b) {
   return a + b;
@@ -14,7 +19,8 @@ function multiply(a, b) {
 
 function divide(a, b) {
   if (b === 0) {
-    return "LOL";
+    console.log(typeof a);
+    alert(errorMessage);
   } else {
     return a / b;
   }
@@ -25,7 +31,7 @@ function divide(a, b) {
 //when called
 
 function operation() {
-  //convert the operands from strings to numbers to enable math operations
+  //*convert the operands from strings to numbers to enable math operations
   previousOperand = Number(previousOperand);
   currentOperand = Number(currentOperand);
   switch (operator) {
@@ -40,7 +46,7 @@ function operation() {
   }
 }
 
-//Global variables
+//?Global variables
 
 let operator = "";
 let previousOperand = "";
@@ -70,7 +76,6 @@ let currentDisplay = document.querySelector(".current");
 numbers.forEach(function (number) {
   number.addEventListener("click", function (e) {
     handleNumber(e.target.textContent); //display the content of the HTML element
-    handleDecimal();
     currentDisplay.textContent = currentOperand;
   });
 });
@@ -81,17 +86,6 @@ function handleNumber(num) {
   //limit the length of the numbers the user can input
   if (currentOperand.length <= 4) {
     currentOperand += num;
-  }
-}
-
-//Function to handle the decimal input
-//limit the decimal typed to one
-
-function handleDecimal() {
-  if (decimal.length > 1) {
-    return;
-  } else {
-    return decimal;
   }
 }
 

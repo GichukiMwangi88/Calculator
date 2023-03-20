@@ -1,8 +1,7 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 6em;
+    display: grid;
+    place-items: center;
+    padding: 10em;
 }
 
 
